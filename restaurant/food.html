@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>菜单</title>
+    <link rel="stylesheet" type="text/css" href="css/backstage.css"/>
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css">
+    <link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.min.css">
+<body>
+<div class="hidden alter_hidden">
+    <div style="margin: 15px 0 ;font-size: 21px;">
+        <span>菜品：</span><input type="text" name="us" class="alter_name" autocomplete="off"/>
+    </div>
+    <div style="margin: 15px 0 ;font-size: 21px; ">
+        <span>价格：</span><input type="text" name="us" class="alter_price" autocomplete="off"/>
+    </div>
+    <div style="margin: 15px 0 ;font-size: 21px;">
+        <span>描述：</span><input type="text" name="us" class="alter_desc" autocomplete="off"/>
+    </div>
+    <div style="margin: 15px 0 ;font-size: 21px;">
+        <span>类型：</span><input type="text" name="us" class="alter_typename" autocomplete="off"/>
+    </div>
+    <div style="margin: 15px 0 ;font-size: 21px;">
+        <span>类型id：</span><input type="text" name="us" class="alter_typeid" autocomplete="off"/>
+    </div>
+    <div class="">
+        <input type="button" value="取消" class="alter_out" >
+        <input type="button" value="确定" class="alter_define" style="margin-right: 40px">
+    </div>
+</div>
+<div class="hidden food_hidden">
+    <div style="margin: 15px 0 ;font-size: 21px;">
+        <span>菜品：</span><input type="text" name="us" class="name" autocomplete="off"/>
+    </div>
+    <div style="margin: 15px 0 ;font-size: 21px; ">
+        <span>价格：</span><input type="text" name="us" class="price" autocomplete="off"/>
+    </div>
+    <div style="margin: 15px 0 ;font-size: 21px;">
+        <span>描述：</span><input type="text" name="us" class="desc" autocomplete="off"/>
+    </div>
+    <div style="margin: 15px 0 ;font-size: 21px;">
+        <span>类型：</span><input type="text" name="us" class="typename" autocomplete="off"/>
+    </div>
+    <div style="margin: 15px 0 ;font-size: 21px;">
+        <span>类型id：</span><input type="text" name="us" class="typeid" autocomplete="off"/>
+    </div>
+    <div class="">
+        <input type="button" value="取消" class="define" >
+        <input type="button" value="确定" class="define" style="margin-right: 40px">
+    </div>
+</div>
+<div class="all">
+    <div style="width: 100%;height: 20px"></div>
+    <div class="top">
+        <div class="top_font">
+            小明餐厅
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="left" style=" box-sizing: content-box;">
+            <a href="suer.html" class="suer" >
+                <div class="left_font">
+                    用户信息
+                    <span class="iconfont">&#xe631;</span>
+                </div>
+            </a>
+            <a href="food.html" class="food" style=" background-color: #277a9dc2;">
+                <div class="left_font">
+                    菜单
+                    <span class="iconfont">&#xe631;</span>
+                </div>
+            </a>
+            <a href="order.html" class="order">
+                <div class="left_font">
+                    订单
+                    <span class="iconfont">&#xe631;</span>
+                </div>
+            </a>
+        </div>
+        <div class="right" style=" box-sizing: content-box;">
+            <div class="right_top">
+                菜单
+            </div>
+            <div style="margin-top: 20px;height: 380px">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="width: 160px">菜品</th>
+                        <th style="width: 160px">价格</th>
+                        <th style="width: 640px;">菜品描述</th>
+                        <th style="width: 180px">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody class="food_tbody">
+
+                    </tbody>
+                </table>
+            </div>
+            <div style="position: relative">
+                <ul class="page"></ul>
+            </div>
+            <div>
+                <button type="button" class="btn btn-info append" style="float: right">添加菜品</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/food.js"></script>
+</body>
+</html>
