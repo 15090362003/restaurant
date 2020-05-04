@@ -3,31 +3,65 @@
     padding: 0;
     line-height: 1.1;
 }
+a:hover
+{
+    color: white;
+    text-decoration: none;
+}
 .all
 {
     background-color: #9e9e9e52;
     min-width: 1532px;
+    width: 100%;
 }
 .top
 {
+    height: 50px;
     width: 100%;
-    height: 100px;
-    background-color: #277a9dc2;
+    background-color: white;
+    position: relative;
 }
-.top_font
+.top>div
 {
     display: inline-block;
-    width: 80px;
-    height: 90px;
-    color: white;
-    font-family: cursive;
-    font-size: 40px;
-    margin-left: 100px;
-    margin-top: 4px;
 }
-.bottom
+.top_suer:hover .suername_hidden
 {
-    width: 100%;
+    display: block;
+}
+.top_suer_name
+{
+    margin: 0 100px;
+    height: 100%;
+    font-size: 20px;
+    line-height: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    color: #9E9E9E;
+}
+.suername_hidden
+{
+    display: none;
+    background-color: white;
+    position: absolute;
+    right: 80px;
+    top: 51px;
+    padding: 0 20px ;
+    border: #4e555b;
+    text-align: center;
+}
+.suername_hidden>a
+{
+    text-decoration: none;
+    color: #1d2124;
+    display: block;
+    padding:15px 0;
+}
+.suername_information_hidden
+{
+    border-bottom: 1px solid #9E9E9E;
 }
 .bottom>div
 {
@@ -36,48 +70,38 @@
 }
 .left
 {
-    padding-top: 50px;
     width: 200px;
-    height: 570px;
-    background-color: white;
-    margin:10px 50px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 2px #277a9dc2;
+    height: 710px;
+    background-color: black;
 }
 .left>a
 {
     display: block;
     text-decoration: none;
-    color: black;
-    border-radius: 10px;
 }
-.left>a:hover
+.left_font:hover
 {
-    background-color: #277a9dc2;
     color: white;
     text-decoration: none;
 }
 .left_font
 {
-    padding: 5px 0;
     width: 80%;
-    font-size: 25px;
-    font-weight: bold;
-    font-family: cursive;
-    border-bottom: 1px solid #5493ad;
-    margin: 10px 10%;
+    padding: 20px 10%;
+    color:#adb5bd;
+    box-sizing: content-box;
 }
 .right img
 {
-    width: 1100px;
-    height: 500px;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     border-radius: 20px;
 }
 .right
 {
-    width: 1100px;
-    height: 500px;
+    width: 80%;
+    height: 580px;
     padding: 50px 50px;
     background-color: white;
     margin-top: 20px;
