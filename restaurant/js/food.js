@@ -30,7 +30,7 @@ function loadData(nowpage){
             //修改
             $(".alter").click(function () {
                 $(".alter_hidden").css("display", "block")
-                //确定
+            //确定
                 $(".alter_define").click(function () {
                     $(".alter_hidden").css("display", "none")
                     alter()
@@ -112,7 +112,7 @@ $(document).on('click', '.page li:not([disabled])', function () {
         $(".food_hidden").css("display", "block")
     }),
 //添加菜单并隐藏
-$(".define").click(function () {
+$(".append_define").click(function () {
         $(".food_hidden").css("display", "none")
         var name = $('.name').val();
         var price = $('.price').val();
@@ -139,15 +139,9 @@ $(".define").click(function () {
             }
         })
     });
-//确定
-$(".alter_define").click(function () {
-    $(".alter_hidden").css("display", "none")
-    alter()
-})
-//取消修改
-$(".alter_out").click(function () {
-    $(".alter_hidden").css("display", "none")
-    alert('您取消了修改')
+//取消参加
+$(".append_out").click(function () {
+    $(".food_hidden").css("display", "none")
 })
 //修改的ajax
 function alter() {
@@ -197,5 +191,4 @@ function del() {
         }
     })
 }
-
 

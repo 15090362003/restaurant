@@ -46,8 +46,8 @@
         <span>类型id：</span><input type="text" name="us" class="typeid" autocomplete="off"/>
     </div>
     <div class="">
-        <input type="button" value="取消" class="define" >
-        <input type="button" value="确定" class="define" style="margin-right: 40px">
+        <input type="button" value="确定" class="define append_define" style="margin-right: 40px">
+        <input type="button" value="取消" class="define append_out" >
     </div>
 </div>
 <div class="all">
@@ -57,15 +57,15 @@
         </div>
         <div class="top_suer">
             <div class="top_suer_name">
-                <cite style="font-style: normal">zz</cite>
+                <cite style="font-style: normal" class="name"></cite>
                 <span class="iconfont" style="float:none;">&#xe665;</span>
             </div>
 
             <div class="suername_hidden">
-                <a href="#" class="suername_information_hidden">
+                <a href="suer.html" class="suername_information_hidden">
                     基本信息
                 </a>
-                <a href="#">
+                <a href="#" class="out">
                     退出
                 </a>
             </div>
@@ -75,7 +75,7 @@
     <div class="bottom">
         <div class="left">
             <a href="backstage.html" class="main">
-                <div class="left_font" style="background-color: #0f6674">
+                <div class="left_font">
                     主页
                     <span class="iconfont">&#xe665;</span>
                 </div>
@@ -87,7 +87,7 @@
                 </div>
             </a>
             <a href="food.html" class="food">
-                <div class="left_font">
+                <div class="left_font" style="background-color: #0f6674">
                     菜单
                     <span class="iconfont">&#xe665;</span>
                 </div>
@@ -102,6 +102,9 @@
         <div class="right" style=" box-sizing: content-box;">
             <div class="right_top">
                 菜单
+            </div>
+            <div>
+                <button type="button" class="btn btn-info append" style="margin-top: 20px">添加菜品</button>
             </div>
             <div style="margin-top: 20px;height: 380px">
                 <table class="table table-bordered">
@@ -121,9 +124,6 @@
             <div style="position: relative">
                 <ul class="page"></ul>
             </div>
-            <div>
-                <button type="button" class="btn btn-info append" style="float: right">添加菜品</button>
-            </div>
 
         </div>
     </div>
@@ -133,5 +133,6 @@
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/food.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 </body>
 </html>

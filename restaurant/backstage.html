@@ -14,15 +14,15 @@
                 </div>
                 <div class="top_suer">
                     <div class="top_suer_name">
-                        <cite style="font-style: normal">zz</cite>
+                        <cite style="font-style: normal" class="name"></cite>
                         <span class="iconfont" style="float:none;">&#xe665;</span>
                     </div>
 
                     <div class="suername_hidden">
-                        <a href="#" class="suername_information_hidden">
+                        <a href="suer.html" class="suername_information_hidden">
                             基本信息
                         </a>
-                        <a href="#">
+                        <a href="#" class="out">
                             退出
                         </a>
                     </div>
@@ -63,21 +63,6 @@
         </div>
 
         <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-        <script>
-
-
-            $(function (){
-                alert(obj)
-                $.ajax({
-                    url: 'http://39.105.232.109:3000/user/getLoginUser',
-                    type: 'get',
-                    data: {},
-                    success: function (data) {
-                        console.log(data);
-                    }
-                })
-            })
-
-        </script>
+        <script type="text/javascript" src="js/common.js"></script>
     </body>
 </html>
