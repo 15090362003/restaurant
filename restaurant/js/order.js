@@ -7,7 +7,7 @@ function loadData(nowpage){
         type: 'post',
         url: 'http://39.105.232.109:3000/order/getInfoByPage',
         data: {
-            pageSize: 4,
+            pageSize: 5,
             page: nowpage
         },
         success: function (data) {
@@ -15,6 +15,9 @@ function loadData(nowpage){
             var order = data.info.list;
             var str = '';
             for (var i = 0; i < order.length; i++) {
+                $(".alter_food").attr({"value": order[i].drawee});
+                $(".alter_receivables").attr({"value": order[i].receivables});
+                $(".alter_drawee").attr({"value": order[i].food});
                 str += '<tr class="item" v-if="book.items">' +
                     '<td class="item-title">' + order[i].drawee + '</td>' +
                     '<td class="item-title">' + order[i].receivables + '</td>' +
@@ -29,7 +32,7 @@ function loadData(nowpage){
             $('.order_tbody').html(str);
             //显示修改
             $(".alter").click(function () {
-                $(".alter_hidden").css("display", "block")
+                $(".order_alter_hidden").css("display", "block")
             });
         }
     })
@@ -99,32 +102,53 @@ $(document).on('click', '.page li:not([disabled])', function () {
     }),
 //添加订单并隐藏
     $(".define").click(function () {
-        $(".order_hidden").css("display", "none")
         var food = $('.food').val();
         var receivables = $('.receivables').val();
         var drawee = $('.drawee').val();
-        $.ajax({
-            type: 'post',
-            url: 'http://39.105.232.109:3000/order/add',
-            data: {
-                food: food,
-                receivables: receivables,
-                drawee: drawee,
-            },
-            success: function (data) {
-                console.log(data)
-                loadData(1)
-                //获取需要的数据
-            },
-            error: function (a) {
-                console.log(a)
+            $.ajax({
+                type: 'post',
+                url: 'http://39.105.232.109:3000/order/add',
+                data: {
+                    food: food,
+                    receivables: receivables,
+                    drawee: drawee,
+                },
+                success: function (data) {
+                    if ($.isNumeric(receivables)) {
+                        if (data.err === 0){
+                            alert("添加成功")
+                            $(".order_hidden").css("display", "none")
+                            loadData(1)
+                    }else {
+                        alert(data.msg)
+                    }
+                    console.log(data)
+                } else{
+                        alert("付款金额只能输入数字请重新输入")
+                    }
             }
         })
     });
+//取消添加
+$(".out").click(function () {
+    $(".order_hidden").css("display", "none")
+    alert("你取消了修改")
+})
 //确定
 $(".alter_define").click(function () {
-    $(".alter_hidden").css("display", "none")
-    alter()
+    var receivables = $('.alter_receivables').val();
+    if ($.isNumeric(receivables)) {
+        $(".order_alter_hidden").css("display", "none")
+        alter()
+        alert("修改成功")
+    }else {
+        alert("付款金额必须是数字")
+    }
+})
+//取消修改
+$(".alter_out").click(function () {
+    $(".order_alter_hidden").css("display", "none")
+    alert("你取消了修改")
 })
 //修改的ajax
 function alter() {
@@ -132,23 +156,28 @@ function alter() {
     var food = $('.alter_food').val();
     var receivables = $('.alter_receivables').val();
     var drawee = $('.alter_drawee').val();
-    $.ajax({
-        type: 'post',
-        url: 'http://39.105.232.109:3000/order/updata',
-        data: {
-            _id:_id,
-            food: food,
-            receivables: receivables,
-            drawee: drawee,
-        },
-        success: function (data) {
-            loadData(1)
-            console.log(data)
-            //获取需要的数据
-        },
-        error: function (a) {
-            console.log(a)
-        }
-    })
+    if ($.isNumeric(receivables)) {
+        $.ajax({
+            type: 'post',
+            url: 'http://39.105.232.109:3000/order/updata',
+            data: {
+                _id:_id,
+                food: food,
+                receivables: receivables,
+                drawee: drawee,
+            },
+            success: function (data) {
+                loadData(1)
+                console.log(data)
+                //获取需要的数据
+            },
+            error: function (a) {
+                console.log(a)
+            }
+        })
+    } else{
+        alert("付款金额只能输入数字请重新输入")
+    }
+
 }
 

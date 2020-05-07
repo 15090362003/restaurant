@@ -34,7 +34,7 @@ function get(){
             $(".suer_sex").text(sex)
             $(".suer_tel").text(data.list[0].tel)
             $(".input_name").attr({"value": data.list[0].name});
-            $(".input_sex").attr({"value": sex});
+            $(".input_sex").attr({"value": data.list[0].sex});
             $(".input_tel").attr({"value": data.list[0].tel});
         }
     })

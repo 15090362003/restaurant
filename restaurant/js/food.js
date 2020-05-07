@@ -6,7 +6,7 @@ function loadData(nowpage){
         type: 'post',
         url: 'http://39.105.232.109:3000/food/getInfoByPage',
         data: {
-            pageSize: 4,
+            pageSize: 5,
             page: nowpage
         },
         success: function (data) {
@@ -14,6 +14,11 @@ function loadData(nowpage){
             var food = data.info.list;
             var str = '';
             for (var i = 0; i < food.length; i++) {
+                $(".alter_name").attr({"value": food[i].name});
+                $(".alter_price").attr({"value": food[i].price});
+                $(".alter_desc").attr({"value": food[i].desc});
+                $(".alter_typename").attr({"value": food[i].typename});
+                $(".alter_typeid").attr({"value": food[i].typeid});
                 str += '<tr class="item" v-if="book.items">' +
                     '<td class="item-title">' + food[i].name + '</td>' +
                     '<td class="item-title">' + food[i].price + '</td>' +
@@ -30,20 +35,10 @@ function loadData(nowpage){
             //修改
             $(".alter").click(function () {
                 $(".alter_hidden").css("display", "block")
-            //确定
-                $(".alter_define").click(function () {
-                    $(".alter_hidden").css("display", "none")
-                    alter()
-                })
-                //取消修改
-                $(".alter_out").click(function () {
-                    $(".alter_hidden").css("display", "none")
-                    alert('您取消了修改')
-                })
-            });
-            //运行修改函数
+            })
+            //运行删除函数
             $(".del").click(function () {
-                del()
+                $(".del_hidden").css("display", "block")
             })
         }
     })
@@ -52,7 +47,10 @@ function loadData(nowpage){
 function pagintFactory(data, nowpage){
     var html = "";
     $(".page").html(html);
-    var pageHtml = "<li "+ "class=shang " + (data.page !== 1 ? "" : "disabled") + ">«</li>";
+    var pageHtml = "<li "+ "class=shang " + (nowpage !== 1 ? "" : "disabled") + ">«</li>";
+    $(".shang").click(function () {
+        loadData(nowpage-1)
+    })
     var pageTotal = data.info.allpage >= 6 ? 6 : data.info.allpage;
     if (nowpage < 6) {
         for (var j = 1; j <= pageTotal; j++) {
@@ -85,7 +83,10 @@ function pagintFactory(data, nowpage){
             }
         }
     }
-    pageHtml += "            <li "+"class=xia " + (nowpage >= data.info.allpage ? "disabled" : "") + " data-pageid='" +  "'>»</li>";
+    pageHtml += "            <li "+"class=xia" + (nowpage >= data.info.allpage ? "disabled" : "") + " data-pageid='" +  "'>»</li>";
+    $(".xia").click(function () {
+        loadData(nowpage+1)
+    });
     pageHtml += "<li class='jump' disabled>共" + data.info.allpage + "页, 到第<input class='entrance' value='" + nowpage + "' type='text'>页</li><li data-total='" + data.info.allpage + "' class='confirm'>确定</li>"
     $('.page').html(pageHtml);
 }
@@ -96,7 +97,7 @@ $(document).on('click', '.page li:not([disabled])', function () {
         //是确定，要获取输入的是第几页。
         var apage = parseInt($('.entrance').val());
         if (apage <= 0 || apage > $(this).data('total') || isNaN(apage)) {
-            layer.msg('请输入正确的页码！');
+            alert('请输入正确的页码！');
         } else {
             loadData(apage);
         }
@@ -113,33 +114,49 @@ $(document).on('click', '.page li:not([disabled])', function () {
     }),
 //添加菜单并隐藏
 $(".append_define").click(function () {
-        $(".food_hidden").css("display", "none")
-        var name = $('.name').val();
-        var price = $('.price').val();
-        var desc = $('.desc').val();
-        var typename = $('.typename').val();
-        var typeid = $('.typeid').val();
-        $.ajax({
-            type: 'post',
-            url: 'http://39.105.232.109:3000/food/add',
-            data: {
-                name: name,
-                price: price,
-                desc: desc,
-                typename: typename,
-                typeid: typeid
-            },
-            success: function (data) {
-                loadData(1);
-                console.log(data)
-                //获取需要的数据
-            },
-            error: function (a) {
-                console.log(a)
+    var name = $('.name').val();
+    var price = $('.price').val();
+    var desc = $('.desc').val();
+    var typename = $('.typename').val();
+    var typeid = $('.typeid').val();
+    if ($.isNumeric(price)){
+        if (typename === "蔬菜" || typename === "水果" || typename === "热菜" || typename === "凉菜" || typename === "西餐"){
+            if (typeid === "0" || typeid === "1" || typeid === "2" || typeid === "3" || typeid === "4"){
+                $.ajax({
+                    type: 'post',
+                    url: 'http://39.105.232.109:3000/food/add',
+                    data: {
+                        name: name,
+                        price: price,
+                        desc: desc,
+                        typename: typename,
+                        typeid: typeid
+                    },
+                    success: function (data) {
+                        loadData(1);
+                        console.log(data)
+                        //获取需要的数据
+                    },
+                    error: function (a) {
+                        console.log(a)
+                    }
+                })
+                alert("添加成功")
+                $(".food_hidden").css("display", "none")
             }
-        })
+            else {
+                alert("请输入正确的菜品类型id")
+            }
+        }
+        else {
+            alert("请输入正确的菜品类型")
+        }
+    }
+    else{
+        alert("价格只能输入数字请重新输入")
+    }
     });
-//取消参加
+//取消添加
 $(".append_out").click(function () {
     $(".food_hidden").css("display", "none")
 })
@@ -191,4 +208,40 @@ function del() {
         }
     })
 }
+//删除的确定与取消
+$(".del_define").click(function () {
+    del()
+    $(".del_hidden").css("display", "none")
+    alert("删除成功")
+})
+$(".del_out").click(function () {
+    alert("你取消了删除")
+    $(".del_hidden").css("display", "none")
+})
+//确定修改
+$(".alter_define").click(function () {
+    var price = $('.alter_price').val();
+    var typename = $('.alter_typename').val();
+    var typeid = $('.alter_typeid').val();
+    if ($.isNumeric(price)) {
+        if (typename === "蔬菜" || typename === "水果" || typename === "热菜" || typename === "凉菜" || typename === "西餐") {
+            if (typeid === "0" || typeid === "1" || typeid === "2" || typeid === "3" || typeid === "4") {
+                alter()
+                $(".alter_hidden").css("display", "none")
+                alert("修改成功")
+            } else {
+                alert("请输入正确的菜品类型id")
+            }
+        } else {
+            alert("请输入正确的菜品类型")
+        }
+    } else {
+        alert("价格只能输入数字请重新输入")
+    }
+})
+//取消修改
+$(".alter_out").click(function () {
+    alert('您取消了修改')
+    $(".alter_hidden").css("display", "none")
+})
 

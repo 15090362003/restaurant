@@ -161,6 +161,16 @@ a:hover
     outline: none;
     cursor: pointer;
 }
+.out
+{
+    border: none;
+    width: 100px;
+    height: 50px;
+    background-color: #5493ad;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+}
 .no
 {
     border: none;
@@ -171,13 +181,44 @@ a:hover
     outline: none;
     cursor: pointer;
 }
+.del_out
+{
+    border: none;
+    width: 100px;
+    height: 50px;
+    background-color: #5493ad;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+}
+.del_define
+{
+    border: none;
+    width: 100px;
+    height: 50px;
+    background-color: #5493ad;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+}
+.del_hidden
+{
+    width: 250px;
+    height: 150px;
+    text-align: center;
+    display: none;
+    position: absolute;
+    top: 30%;
+    left: 45%;
+    border: 1px solid #adb5bd;
+    background-color: white;
+}
 .alter_out
 {
     border: none;
     width: 100px;
     height: 50px;
     background-color: #5493ad;
-    float: right;
     border-radius: 10px;
     outline: none;
     cursor: pointer;
@@ -188,21 +229,15 @@ a:hover
     width: 100px;
     height: 50px;
     background-color: #5493ad;
-    float: right;
     border-radius: 10px;
     outline: none;
     cursor: pointer;
 }
-.food_tbody tr
-{
-    height: 70px;
-}
 .hidden
 {
-    background-color: #fffcfc;
+    background-color: white;
     position: absolute;
     z-index: 1;
-    padding: 200px 39%;
     opacity:0.9
 }
 .hidden span
@@ -213,71 +248,87 @@ a:hover
 .food_hidden
 {
     display: none;
+    top: 30%;
+    width: 400px;
+    height: 350px;
+    left: 40%;
+    text-align: center;
 }
 .alter_hidden
 {
     display: none;
+    top: 30%;
+    left: 40%;
+    width: 400px;
+    height: 350px;
+    border: 1px solid #adb5bd;
+    text-align: center;
 }
 .page
 {
     float: right;
-    width: auto;
     height: 30px;
     position: absolute;
-    right: 0;
-    bottom: 0px;
-    font-size:0;
+    right: 0px;
+    top: 0;
 }
 .page li{
-    font-size:14px;
-    display: inline-block;
-    margin-right:10px;
-    text-align: center;
-    width:30px;
-    height:28px;
-    line-height: 28px;
-    border:1px solid #ddd;
+font-size:14px;
+display: inline-block;
+margin-right:10px;
+text-align: center;
+width:30px;
+height:28px;
+line-height: 28px;
+border:1px solid #ddd;
 }
 .page [disabled]{
-    color:gray;
+color:gray;
 }
 .page li:not([disabled]):hover {
-    cursor: pointer;
-    color: #fff;
-    background-color: #009688;
+cursor: pointer;
+color: #fff;
+background-color: #009688;
 }
 .page li.jump
 {
-    width: auto;
+width: auto;
 }
 .page li.jump .entrance {
-    border: 1px solid #ddd;
-    text-align: center;
-    width: 30px;
-    height: 28px;
+border: 1px solid #ddd;
+text-align: center;
+width: 30px;
+height: 28px;
 }
 .order_alter_hidden
 {
-    padding: 250px 38.7%;
+display: none;
+top: 30%;
+left: 40%;
+width: 400px;
+height: 200px;
+border: 1px solid #adb5bd;
+text-align: center;
 }
 .order_alter_hidden span
 {
-    width: 105px;
-}
-.order_alter_hidden div
-{
-    width: 350px;
+width: 105px;
 }
 .order_hidden span
 {
-    width: 105px;
+width: 105px;
 }
 .order_hidden div
 {
-    width: 350px;
+width: 350px;
 }
 .order_hidden
 {
     display: none;
-    padding: 260px 38.7%;
+    width: 400px;
+    text-align: center;
+    height: 250px;
+    top: 30%;
+    left: 40%;
+    border: 1px solid #adb5bd;
 }

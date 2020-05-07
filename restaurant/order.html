@@ -9,35 +9,35 @@
     <link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.min.css">
 <body>
 <!--修改-->
-<div class="hidden alter_hidden order_alter_hidden">
-    <div style="margin: 15px 0 ;font-size: 21px;">
+<div class="hidden order_alter_hidden">
+    <div style="margin: 15px auto ;font-size: 21px;">
         <span>选购菜品：</span><input type="text" name="us" class="alter_food" autocomplete="off"/>
     </div>
-    <div style="margin: 15px 0 ;font-size: 21px; ">
+    <div style="margin: 15px auto;font-size: 21px; ">
         <span>付款金额：</span><input type="text" name="us" class="alter_receivables" autocomplete="off"/>
     </div>
-    <div style="margin: 15px 0 ;font-size: 21px;">
+    <div style="margin: 15px auto;font-size: 21px;">
         <span>付款会员：</span><input type="text" name="us" class="alter_drawee" autocomplete="off"/>
     </div>
-    <div class="">
-        <input type="button" value="取消" class="alter_define order_alter_define" >
-        <input type="button" value="确定" class="alter_define" style="margin-right: 40px">
+    <div style="text-align: center">
+        <input type="button" value="确定" class="alter_define">
+        <input type="button" value="取消" class="alter_out" >
     </div>
 </div>
 <!--添加-->
 <div class="hidden order_hidden">
-    <div style="margin: 15px 0 ;font-size: 21px;">
+    <div style="margin: 15px 25px ;font-size: 21px;">
         <span>选购菜品：</span><input type="text" name="us" class="food" autocomplete="off"/>
     </div>
-    <div style="margin: 15px 0 ;font-size: 21px; ">
+    <div style="margin: 15px 25px ;font-size: 21px; ">
         <span>付款金额：</span><input type="text" name="us" class="receivables" autocomplete="off"/>
     </div>
-    <div style="margin: 15px 0 ;font-size: 21px;">
+    <div style="margin: 15px 25px ;font-size: 21px;">
         <span>付款会员：</span><input type="text" name="us" class="drawee" autocomplete="off"/>
     </div>
-    <div class="">
-        <input type="button" value="取消" class="define" >
-        <input type="button" value="确定" class="define" style="margin-right: 40px">
+    <div style="margin: 30px auto">
+        <input type="button" value="确定" class="define">
+        <input type="button" value="取消" class="out" >
     </div>
 </div>
 <div class="all">
@@ -93,6 +93,9 @@
                 <div class="right_top">
                     菜单
                 </div>
+                <div>
+                    <button type="button" class="btn btn-info append order_append" style="margin-top: 20px">添加订单</button>
+                </div>
                 <div style="margin-top: 20px;height: 360px">
                     <table class="table table-bordered">
                         <thead>
@@ -110,9 +113,6 @@
                 </div>
                 <div style="position: relative">
                     <ul class="page"></ul>
-            </div>
-            <div>
-                <button type="button" class="btn btn-info append order_append" style="float: right">添加订单</button>
             </div>
 
         </div>

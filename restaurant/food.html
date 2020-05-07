@@ -8,6 +8,15 @@
     <link rel="stylesheet" type="text/css" href="css/iconfont.css">
     <link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.min.css">
 <body>
+<div class=" del_hidden">
+    <div style="margin: 35px 12px;font-size: 20px;">
+        <span>你确定要删除次菜品</span>
+    </div>
+    <div >
+        <input type="button" value="确定" class="del_define">
+        <input type="button" value="取消" class="del_out" >
+    </div>
+</div>
 <div class="hidden alter_hidden">
     <div style="margin: 15px 0 ;font-size: 21px;">
         <span>菜品：</span><input type="text" name="us" class="alter_name" autocomplete="off"/>
@@ -24,9 +33,15 @@
     <div style="margin: 15px 0 ;font-size: 21px;">
         <span>类型id：</span><input type="text" name="us" class="alter_typeid" autocomplete="off"/>
     </div>
-    <div class="">
+    <div>
+        <span style="color: red;font-size: 20px">
+            *菜品类型(蔬菜；水果；热菜；凉菜；西餐)<br>
+            *菜品类型id(0 蔬菜；1 水果；2 热菜；3 凉菜；4 西餐)
+        </span>
+    </div>
+    <div style="text-align: center">
+        <input type="button" value="确定" class="alter_define">
         <input type="button" value="取消" class="alter_out" >
-        <input type="button" value="确定" class="alter_define" style="margin-right: 40px">
     </div>
 </div>
 <div class="hidden food_hidden">
@@ -44,6 +59,12 @@
     </div>
     <div style="margin: 15px 0 ;font-size: 21px;">
         <span>类型id：</span><input type="text" name="us" class="typeid" autocomplete="off"/>
+    </div>
+    <div>
+        <span style="color: #ff0000;font-size: 20px">
+            *菜品类型(蔬菜；水果；热菜；凉菜；西餐)<br>
+            *菜品类型id(0 蔬菜；1 水果；2 热菜；3 凉菜；4 西餐)
+        </span>
     </div>
     <div class="">
         <input type="button" value="确定" class="define append_define" style="margin-right: 40px">
@@ -111,7 +132,7 @@
                     <thead>
                     <tr>
                         <th style="width: 160px">菜品</th>
-                        <th style="width: 160px">价格</th>
+                        <th style="width: 160px">价格/￥</th>
                         <th style="width: 640px;">菜品描述</th>
                         <th style="width: 180px">操作</th>
                     </tr>
