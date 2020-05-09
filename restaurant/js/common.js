@@ -1,5 +1,5 @@
 //退出
-$(".out").click(function () {
+$(".outlogin").click(function () {
     localStorage.getItem("data")
     $.ajax({
         url: 'http://39.105.232.109:3000/user/logout',
