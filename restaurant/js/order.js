@@ -13,17 +13,15 @@ function loadData(nowpage){
         success: function (data) {
             console.log(data)
             var order = data.info.list;
+            localStorage.setItem("allpage", data.info.allpage)
             var str = '';
             for (var i = 0; i < order.length; i++) {
-                $(".alter_food").attr({"value": order[i].drawee});
-                $(".alter_receivables").attr({"value": order[i].receivables});
-                $(".alter_drawee").attr({"value": order[i].food});
                 str += '<tr class="item" v-if="book.items">' +
                     '<td class="item-title">' + order[i].drawee + '</td>' +
                     '<td class="item-title">' + order[i].receivables + '</td>' +
                     '<td class="item-title">' + order[i].food + '</td>' +
                     '<td>' +
-                    '<button type="button" class="btn btn-success alter" style="margin-right: 20px" '+ 'data-id=' + order[i]._id + ' >' + '修改' + '</button>' +
+                    '<button type="button" class="btn btn-success alter" style="margin-right: 20px" '+ ' data-id=' + order[i]._id + ' data-food=' + order[i].food + ' data-receivables=' + order[i].receivables + ' data-drawee=' + order[i].drawee + ' >' + '修改' + '</button>' +
                     '</td>'
                 '</tr>';
                 pagintFactory(data, nowpage)
@@ -32,7 +30,11 @@ function loadData(nowpage){
             $('.order_tbody').html(str);
             //显示修改
             $(".alter").click(function () {
+                localStorage.setItem("alter_id", $(this).data('id'))
                 $(".order_alter_hidden").css("display", "block")
+                $(".alter_food").val($(this).data('food'));
+                $(".alter_receivables").val($(this).data('receivables'));
+                $(".alter_drawee").val($(this).data('drawee'));
             });
         }
     })
@@ -79,21 +81,41 @@ function pagintFactory(data, nowpage){
     $('.page').html(pageHtml);
 }
 //跳转页面
+//
 $(document).on('click', '.page li:not([disabled])', function () {
     //confirm 判断点击的是确定还是页码
+    var pa =parseInt($('.entrance').val());
     if ($(this).hasClass('confirm')) {
         //是确定，要获取输入的是第几页。
         var apage = parseInt($('.entrance').val());
         if (apage <= 0 || apage > $(this).data('total') || isNaN(apage)) {
-            layer.msg('请输入正确的页码！');
+            alert('请输入正确的页码！');
         } else {
             loadData(apage);
+            alert("aa")
         }
     }
     else {
-        //这里就是点击页码后的调用。
-        var pageId = $(this).data('pageid');
-        loadData(pageId);
+        if ($(this).hasClass('shang')) {
+            if(pa===1){
+                $('shang').attr('disabled', true);
+            }else {
+                loadData(pa-1)
+            }
+
+        }else {
+            //这里就是点击页码后的调用。
+            var pageId = $(this).data('pageid');
+            loadData(pageId);
+        }
+        if ($(this).hasClass('xia')) {
+            var all=localStorage.getItem("allpage")
+            if(pa===all){
+                $('xia').attr('disabled', true);
+            }else {
+                loadData(pa+1)
+            }
+        }
     }
 }),
 //添加订单显示
@@ -141,6 +163,9 @@ $(".alter_define").click(function () {
         $(".order_alter_hidden").css("display", "none")
         alter()
         alert("修改成功")
+        $(".alter_food").val("");
+        $(".alter_receivables").val("");
+        $(".alter_drawee").val("");
     }else {
         alert("付款金额必须是数字")
     }
@@ -152,7 +177,7 @@ $(".alter_out").click(function () {
 })
 //修改的ajax
 function alter() {
-    var _id = $('.alter').data('id');
+    var _id = localStorage.getItem("alter_id");
     var food = $('.alter_food').val();
     var receivables = $('.alter_receivables').val();
     var drawee = $('.alter_drawee').val();
@@ -169,6 +194,7 @@ function alter() {
             success: function (data) {
                 loadData(1)
                 console.log(data)
+                window.localStorage.removeItem('alter_id')
                 //获取需要的数据
             },
             error: function (a) {
